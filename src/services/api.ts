@@ -19,10 +19,19 @@ api.interceptors.response.use((res) => {
     }
 
     api.defaults.headers = apiData
-    Cookie.set('@api-data', apiData)
+    Cookie.set('@api-data', JSON.stringify(apiData))
   }
 
   return res
+})
+
+api.interceptors.request.use((req) => {
+  if (req.url.includes('admin')) {
+    const apiData: ApiData = JSON.parse(Cookie.get('@api-data'))
+    req.headers = apiData
+  }
+
+  return req
 })
 
 export default api

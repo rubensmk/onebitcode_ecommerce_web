@@ -1,8 +1,11 @@
+// @ts-nocheck
 import Head from 'next/head'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { store, persistor } from '../store'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@/styles/globals.css'
 
@@ -22,6 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </PersistGate>
       </Provider>
+      <ToastContainer />
     </>
   )
 }
